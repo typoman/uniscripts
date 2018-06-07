@@ -1,5 +1,5 @@
 # uniscripts
-A very simple python module for finding a script of a unicode character. There is also a dictionary to find the Language or Script tag of a script.
+A very simple python module for finding a script of a unicode character.
 
 #### Install
 
