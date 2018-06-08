@@ -779,9 +779,42 @@ def getBlock(UV):
 	return kUnknownScript
 
 def getScript(chr):
+    """
+
+    Takes only one unicode character and returns the associated script in a
+    string.
+
+    Arabic, Latin
+
+    """	
     a, _ = script_cat(chr)
     if a == 'Inherited':
     	return getBlock(ord(chr))
     else:
 	    return a
 
+def getAllCharacters(scriptName):
+    """
+
+    Returns all the characters associated with a script in the uniocode and saves
+    it to a file next to the script path. The scriptName should start with a
+    capital letter. e.g:
+
+    Arabic, Latin
+
+    """
+
+    uniOrder = 0
+    end = int("FFFF", 16)
+    t = []
+    count = 0
+    while uniOrder < end:
+        if getScript(chr(uniOrder)) == scriptName:
+            t.append(chr(uniOrder))
+            count += 1
+        uniOrder += 1
+
+    print("%i characters were found for the %s script." % (count, scriptName))
+
+    with open('%s_unicode_characters.txt' % scriptName, 'w', encoding="utf8") as f:
+        f.write(''.join(t))
